@@ -5,15 +5,17 @@ var myModal = new bootstrap.Modal(document.getElementById('myModal'))
 
 // Trazendo os botões da DOM em Html
 const entrarUsuario = document.getElementById('btnEntrar');
-entrarUsuario.addEventListener('click', (evento) => {
-    let nome = document.getElementById('nome').value,
+entrarUsuario.addEventListener('click', (event) => {
+    let user = document.getElementById('usuario').value,
     senha = document.getElementById('senha').value;
-    // Testando se os campos não estão vazios
-    if(!nome || nome === null || nome === ''|| !senha || senha === null || senha === ''){
-        document.getElementById('titleModal').innerHTML = ``
-        myModal.show();
-    }else{
-        controlerUserLogin.loginInfo(nome, senha);
-    }
+    
+    let alertModal = controlerUserLogin.loginInfo(user, senha);
+
+    document.getElementById('titleModal').innerHTML = alertModal.title;
+    document.getElementById('bodyModal').innerHTML = alertModal.bodyModal;
+    document.getElementById('btnModalClose').innerHTML = alertModal.b1;
+    document.getElementById('btnModalSave').innerHTML = alertModal.b2;
+
+    myModal.show();
 })
 
